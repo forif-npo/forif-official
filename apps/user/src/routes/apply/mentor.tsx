@@ -225,7 +225,7 @@ function ApplyMember() {
       <Box mt={8}>
         <Title
           title={`${CURRENT_YEAR}년도 ${CURRENT_SEMESTER}학기 스터디 개설`}
-          label='2024-08-13 ~ 2024-08-16'
+          label={`${MENTOR_RECRUIT_START_DATE} ~ ${MENTOR_RECRUIT_END_DATE}`}
           mb={3}
         />
         <ApplyMentorStepper steps={steps} activeStep={activeStep} />

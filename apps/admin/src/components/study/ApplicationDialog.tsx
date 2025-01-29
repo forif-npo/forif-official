@@ -70,6 +70,8 @@ export default function ApplicationDialog({
     setIsEdit(false);
   };
 
+  console.log(application);
+
   const form = useForm<ApprovedApplication>({
     resolver: zodResolver(ApplyMentorSchema),
     defaultValues: {
@@ -235,7 +237,8 @@ export default function ApplicationDialog({
                   <Box>
                     <Typography variant='bodySmall'>
                       {application.primary_mentor_name}
-                      <br />
+                    </Typography>
+                    <Typography variant='bodySmall'>
                       {application.primary_mentor_phone_number}
                     </Typography>
                   </Box>

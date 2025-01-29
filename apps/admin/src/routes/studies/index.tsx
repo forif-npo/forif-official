@@ -1,5 +1,5 @@
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { GridActionsCellItem, GridColDef, GridRowId } from '@mui/x-data-grid';
 
 import { Table } from '@packages/components/table/Table';
@@ -56,6 +56,7 @@ function StudiesPage() {
     { field: 'id', headerName: '아이디', flex: 1 },
     { field: 'name', headerName: '스터디 이름', flex: 2 },
     { field: 'primary_mentor_name', headerName: '1순위 멘토', flex: 1 },
+    { field: 'secondary_mentor_name', headerName: '2순위 멘토', flex: 1 },
     {
       field: 'year_semester',
       headerName: '활동 학기',
@@ -109,14 +110,7 @@ function StudiesPage() {
         label='2018년 1학기부터 2024년 2학기까지의 스터디 정보입니다.'
       />
       <Layout>
-        <Typography variant='titleSmall'>
-          승인되었던 스터디 목록입니다.
-        </Typography>
-        <Typography variant='bodySmall'>
-          각 스터디를 클릭하여 부족한 정보가 없는지 확인하고 승인버튼을
-          클릭해주세요.
-        </Typography>
-        <Box sx={{ height: 640, width: '100%', mt: 2 }}>
+        <Box sx={{ height: 640, width: '100%', my: 2 }}>
           <Table
             loading={isLoading}
             rows={studies}

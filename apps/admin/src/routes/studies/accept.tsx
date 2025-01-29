@@ -35,6 +35,14 @@ export const Route = createFileRoute('/studies/accept')({
           studyId.act_year === CURRENT_YEAR &&
           studyId.act_semester === CURRENT_SEMESTER,
       );
+      if (!currentId) {
+        alert(
+          `이번 학기(${CURRENT_YEAR} - ${CURRENT_SEMESTER})에개최한 스터디가 없거나 스터디 정보를 불러오는데 실패했습니다.`,
+        );
+        throw redirect({
+          to: '/dashboard',
+        });
+      }
       return currentId;
     } catch (err) {
       console.error(err);
@@ -49,6 +57,8 @@ export const Route = createFileRoute('/studies/accept')({
 
 function StudyAcceptPage() {
   const currentId = Route.useLoaderData();
+  console.log(currentId);
+
   const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
 
