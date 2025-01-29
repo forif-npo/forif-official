@@ -48,8 +48,8 @@ export const ADMIN_NAV_MENUS: NavMenu[] = [
     title: '부원/회원',
     icon: <GroupOutlinedIcon />,
     submenu: [
-      { title: '부원 관리', href: '/members' },
-      { title: '회원 관리', href: '/subscriber' },
+      { title: '회원 관리', href: '/members' },
+      { title: '멤버 관리', href: '/subscriber' },
       { title: '전체 출석 관리', href: '/members/attendance' },
     ],
   },

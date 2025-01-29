@@ -154,8 +154,8 @@ function AttendancePage() {
 
   return (
     <Container sx={{ mt: 4 }}>
-      <Typography variant='displaySmall'>
-        Attendance Records for Current Term
+      <Typography variant='titleMedium'>
+        이번 학기({CURRENT_YEAR} - {CURRENT_SEMESTER}) 전체 출석 관리
       </Typography>
       <Typography variant='bodyMedium' gutterBottom>
         View and manage attendance across all studies in the current term.

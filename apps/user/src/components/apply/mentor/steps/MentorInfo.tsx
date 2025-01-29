@@ -24,7 +24,7 @@ export function MentorInfo({
     <>
       <Title
         title='신청 부원 정보'
-        label='멘토가 두 분이라면 아래 "멘토2"에 함께하는 멘토님의 학번과 이름을 기입해주세요.'
+        label='멘토가 두 분이라면 에 함께하는 멘토님의 학번과 이름을 "멘토2"에 기입해주세요. 함께하는 멘토님 또한 반드시 홈페이지에 가입이 완료된 상태여야 합니다.'
         pt={4}
         mb={0}
       />
@@ -68,7 +68,7 @@ export function MentorInfo({
               name='secondary_mentor_id'
               label='함께하는 멘토의 학번을 입력해주세요.'
               required
-              placeholder='0000063845'
+              placeholder='2025063845'
             />
           </>
         )}

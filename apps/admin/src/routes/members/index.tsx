@@ -40,8 +40,8 @@ function MembersPage() {
   return (
     <Box>
       <Title
-        title='부원 목록'
-        label='현재 홈페이지에 가입한 부원 목록을 볼 수 있습니다.'
+        title='회원 목록'
+        label='현재 홈페이지에 가입한 회원 목록을 볼 수 있습니다.'
       />
       <Layout>
         <Box
