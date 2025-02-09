@@ -8,6 +8,7 @@ import { visuallyHidden } from '@mui/utils';
 import DarkLetterIcon from '@assets/logos/forif-letter-dark.svg?react';
 import LetterIcon from '@assets/logos/forif-letter.svg?react';
 import { Link } from '@tanstack/react-router';
+import { CURRENT_YEAR } from '@packages/constants';
 
 export default function Component({ mode }: { mode: PaletteMode }) {
   return (
@@ -53,7 +54,7 @@ export default function Component({ mode }: { mode: PaletteMode }) {
             </Box>
           </Link>
           <Typography variant='bodySmall' color='text.primary'>
-            &copy; 2024 FORIF OFFICIAL. All rights reserved.
+            &copy; {CURRENT_YEAR} FORIF OFFICIAL. All rights reserved.
           </Typography>
         </Stack>
 
