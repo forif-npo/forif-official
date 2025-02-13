@@ -70,8 +70,6 @@ export default function ApplicationDialog({
     setIsEdit(false);
   };
 
-  console.log(application);
-
   const form = useForm<ApprovedApplication>({
     resolver: zodResolver(ApplyMentorSchema),
     defaultValues: {
