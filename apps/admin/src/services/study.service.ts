@@ -1,5 +1,6 @@
 import { GridRowId } from '@mui/x-data-grid';
 
+import { CURRENT_YEAR, CURRENT_SEMESTER } from '@packages/constants';
 import { Study } from '@packages/components/types/study';
 import { ApprovedApplication } from '@routes/studies/approve';
 import { AxiosResponse } from 'axios';
@@ -74,7 +75,7 @@ export interface MentorApplication
 }
 export const getAppliedStudies = async () => {
   const data: ApprovedApplication[] = await authApi
-    .get(`/study-apply`)
+    .get(`/study-apply?year=${CURRENT_YEAR}&semester=${CURRENT_SEMESTER}`)
     .then((res) => res.data);
   return data;
 };
