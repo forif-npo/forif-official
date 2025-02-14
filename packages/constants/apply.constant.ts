@@ -105,6 +105,10 @@ export const TAG_OPTIONS = [
     value: 'algorithm',
     label: '알고리즘',
   },
+  {
+    value: 'blockchain',
+    label: '블록체인',
+  },
 ];
 
 export const REVIEW_START_DATE = '2025-03-07T00:00:00';
