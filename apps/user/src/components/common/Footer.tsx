@@ -7,6 +7,7 @@ import { visuallyHidden } from '@mui/utils';
 
 import DarkLetterIcon from '@assets/logos/forif-letter-dark.svg?react';
 import LetterIcon from '@assets/logos/forif-letter.svg?react';
+import { CURRENT_YEAR } from '@packages/constants';
 import { Link } from '@tanstack/react-router';
 import { CURRENT_YEAR } from '@packages/constants';
 
@@ -16,7 +17,6 @@ export default function Component({ mode }: { mode: PaletteMode }) {
       component='footer'
       sx={{
         width: '100%',
-        bgcolor: 'background.paper',
         py: { xs: 3, md: 6 },
       }}
     >

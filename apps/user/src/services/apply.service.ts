@@ -1,3 +1,4 @@
+import { CURRENT_YEAR, CURRENT_SEMESTER } from '@packages/constants';
 import {
   Application,
   ApplyMemberSchema,
@@ -70,7 +71,7 @@ export const applyStudy = async (formData: MentorApplication) => {
 
 export const getAppliedStudies = async () => {
   const data: MentorApplication[] = await authApi
-    .get(`/study-apply`)
+    .get(`/study-apply?year=${CURRENT_YEAR}&semester=${CURRENT_SEMESTER}`)
     .then((res) => res.data);
   return data;
 };

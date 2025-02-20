@@ -87,21 +87,26 @@ export function StudyInfo({
             시간 및 장소는 추후에 변경가능하니 부담없이 작성해주세요.
           </Typography>
         </Box>
-        <Stack direction={'row'} gap={2} width={'100%'}>
-          <FormSelect
-            control={form.control}
-            name='week_day'
-            options={WEEKDAYS_OPTIONS}
-            label='요일'
-            minWidth={'20%'}
-            required
-          />
-          <TimeRangeField
-            control={form.control}
-            start_time='start_time'
-            end_time='end_time'
-            required
-          />
+        <Stack direction={'column'} width={'100%'}>
+          <Stack direction={'row'} gap={2} width={'100%'}>
+            <FormSelect
+              control={form.control}
+              name='week_day'
+              options={WEEKDAYS_OPTIONS}
+              label='요일'
+              minWidth={'20%'}
+              required
+            />
+            <TimeRangeField
+              control={form.control}
+              start_time='start_time'
+              end_time='end_time'
+              required
+            />
+          </Stack>
+          <FormHelperText>
+            금요일은 FORIF 행사 일정으로 인해 스터디 진행에 차질이 생길 수 있으니, 다른 요일에 진행하시는 것을 권장합니다.
+          </FormHelperText>
         </Stack>
         <Box width={'100%'}>
           <FormInput
