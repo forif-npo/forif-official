@@ -1,4 +1,4 @@
-import { CURRENT_YEAR, CURRENT_SEMESTER } from '@packages/constants';
+import { CURRENT_SEMESTER, CURRENT_YEAR } from '@packages/constants';
 import {
   Application,
   ApplyMemberSchema,
@@ -23,9 +23,9 @@ export const applyMember = async (
   });
 };
 
-export const getApplication = async () => {
+export const getApplication = async ({year = CURRENT_YEAR, semester = CURRENT_SEMESTER}:{year?:number, semester?: number}) => {
   const application: Application = await authApi
-    .get('/applications/me')
+    .get(`/applications/me?year=${year}&semester=${semester}`)
     .then((res) => res.data);
   return application;
 };

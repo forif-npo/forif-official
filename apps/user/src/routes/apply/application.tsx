@@ -37,7 +37,10 @@ import CautionList from '@components/apply/application/CautionList';
 export const Route = createFileRoute('/apply/application')({
   beforeLoad: async () => {
     try {
-      await getApplication();
+      await getApplication({
+        year: CURRENT_YEAR,
+        semester: CURRENT_SEMESTER,
+      });
     } catch (err) {
       if (axios.isAxiosError(err) && err.response?.status === 404) {
         redirect({ to: '/apply/member', throw: true });
@@ -48,7 +51,10 @@ export const Route = createFileRoute('/apply/application')({
   },
   loader: async () => {
     const [application, userInfo, studies] = await Promise.all([
-      getApplication(),
+      getApplication({
+        year: CURRENT_YEAR,
+        semester: CURRENT_SEMESTER,
+      }),
       getUser(),
       getAllStudies({
         year: CURRENT_YEAR,

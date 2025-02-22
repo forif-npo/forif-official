@@ -11,6 +11,13 @@ import {
 import { Box } from '@mui/system';
 
 import { Button } from '@packages/components/Button';
+import {
+  Modal,
+  ModalContent,
+  ModalDescription,
+  ModalHeader,
+  ModalTrigger,
+} from '@packages/components/Modal';
 import { Layout } from '@packages/components/elements/Layout';
 import {
   CURRENT_SEMESTER,
@@ -18,6 +25,7 @@ import {
   RECRUIT_END_DATE,
   RECRUIT_START_DATE,
 } from '@packages/constants';
+import { useQuery } from '@tanstack/react-query';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import dayjs from '@utils/dayjs';
 import axios from 'axios';
@@ -31,7 +39,10 @@ import { usePeriod } from '@hooks/usePeriod';
 export const Route = createFileRoute('/_layout/profile/application')({
   loader: async () => {
     try {
-      const application = await getApplication();
+      const application = await getApplication({
+        year: CURRENT_YEAR,
+        semester: CURRENT_SEMESTER,
+      });
       return { application };
     } catch (err) {
       return { err };
@@ -50,8 +61,13 @@ function MyApplication() {
 
   const { application, err } = Route.useLoaderData();
   const { isIncluded } = usePeriod(RECRUIT_START_DATE, RECRUIT_END_DATE);
+
+  const { data: previousApplication } = useQuery({
+    queryKey: ['previousApplication'],
+    queryFn: () => getApplication({ year: 2024, semester: 2 }),
+  });
+
   if (err) {
-    console.log(err);
     if (axios.isAxiosError(err) && err.response?.status === 404) {
       return (
         <Box width={'100%'}>
@@ -103,6 +119,48 @@ function MyApplication() {
                           스터디 신청하기
                         </Button>
                       </Link>
+                      <Modal>
+                        <ModalTrigger>
+                          <Button variant='contained'>이전 지원서 보기</Button>
+                        </ModalTrigger>
+                        <ModalContent>
+                          <ModalHeader>
+                            <Typography variant='titleSmall' mb={1}>
+                              이전 지원서
+                            </Typography>
+                          </ModalHeader>
+                          <ModalDescription>
+                            {previousApplication ? (
+                              <div>
+                                <Typography variant='bodyMedium'>
+                                  1순위 스터디:{' '}
+                                  {previousApplication.primary_study.name}
+                                </Typography>
+                                <Typography variant='bodySmall'>
+                                  {
+                                    previousApplication.primary_study
+                                      .introduction
+                                  }
+                                </Typography>
+                                <Typography variant='bodyMedium' mt={2}>
+                                  2순위 스터디:{' '}
+                                  {previousApplication.secondary_study?.name}
+                                </Typography>
+                                <Typography variant='bodySmall'>
+                                  {
+                                    previousApplication.secondary_study
+                                      ?.introduction
+                                  }
+                                </Typography>
+                              </div>
+                            ) : (
+                              <Typography variant='bodyMedium'>
+                                이전 지원서가 없습니다.
+                              </Typography>
+                            )}
+                          </ModalDescription>
+                        </ModalContent>
+                      </Modal>
                     </Stack>
                   </CardContent>
                 </Card>

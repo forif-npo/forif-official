@@ -65,6 +65,8 @@ function ApplyMember() {
     MENTOR_RECRUIT_END_DATE,
   );
 
+  console.log(isIncluded, MENTOR_RECRUIT_START_DATE, MENTOR_RECRUIT_END_DATE);
+
   useEffect(() => {
     if (!isIncluded) {
       alert(

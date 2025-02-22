@@ -68,7 +68,10 @@ function ApplyMember() {
   useEffect(() => {
     const checkApplication = async () => {
       try {
-        const application = await getApplication();
+        const application = await getApplication({
+          semester: CURRENT_SEMESTER,
+          year: CURRENT_YEAR,
+        });
         if (application) {
           proceed();
           navigate({ to: '/profile/application' });
