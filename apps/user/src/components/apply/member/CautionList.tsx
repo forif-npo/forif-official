@@ -26,7 +26,7 @@ export default function CautionList() {
       </Typography>
       <Stack component={'ol'} gap={1}>
         <Typography component={'li'} variant='bodySmall'>
-          포리프 부원으로써 다양한 행사 및 혜택에 참여하고 싶다면 정규스터디를
+          포리프 부원으로서 다양한 행사 및 혜택에 참여하고 싶다면 정규스터디를
           수강하거나{' '}
           <Modal>
             <ModalTrigger>
@@ -67,7 +67,7 @@ export default function CautionList() {
         </Typography>
         <Typography component={'li'} variant='bodySmall'>
           자율부원으로 신청하고 싶으시다면 아래 1순위(혹은 2순위) 스터디
-          선택란에서 <strong>'자율부원으로 신청'</strong>을 선택해주세요.
+          선택란에서 <strong>'자율부원'</strong>을 선택해주세요.
         </Typography>
         <Typography component={'li'} variant='bodySmall'>
           스터디는 한 학기에 하나만 신청 가능합니다. 다른 수업을 추가로 듣고
@@ -132,7 +132,7 @@ export default function CautionList() {
           를 이용해주세요.
         </Typography>
         <Typography component={'li'} variant='bodySmall'>
-          스터디 신청 기간은 2024-08-26 ~ 2024-09-04입니다. 이 기간 이후에는{' '}
+          스터디 신청 기간은 2025-02-24 ~ 2025-03-06입니다. 이 기간 이후에는{' '}
           <strong>신청서 수정이 불가능합니다.</strong>
         </Typography>
         <Typography component={'li'} variant='bodySmall'>
