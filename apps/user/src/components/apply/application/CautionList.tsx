@@ -8,6 +8,7 @@ import {
   ModalTitle,
   ModalTrigger,
 } from '@packages/components/Modal';
+import { RECRUIT_END_DATE, RECRUIT_START_DATE } from '@packages/constants';
 import { Link } from '@tanstack/react-router';
 
 export default function CautionList() {
@@ -88,8 +89,8 @@ export default function CautionList() {
           를 이용해주세요.
         </Typography>
         <Typography component={'li'} variant='bodySmall'>
-          스터디 신청 기간은 2024-08-26 ~ 2024-09-11입니다. 이 기간 이후에는{' '}
-          <strong>신청서 수정이 불가능합니다.</strong>
+          스터디 신청 기간은 {RECRUIT_START_DATE} ~ {RECRUIT_END_DATE}입니다. 이
+          기간 이후에는 <strong>신청서 수정이 불가능합니다.</strong>
         </Typography>
         <Typography component={'li'} variant='bodySmall'>
           <strong>'1순위 스터디 미선정 시 2순위 스터디 미수강'</strong> 옵션에
@@ -99,14 +100,14 @@ export default function CautionList() {
         <Typography component={'li'} variant='bodySmall'>
           모든 정보가 정확한지 다시 한 번 확인해주세요. 이름, 학과, 전화번호를
           수정하고 싶다면{' '}
-          <Link
-            to='/profile/account'
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-            }}
-          >
-            프로필 페이지
+          <Link to='/profile/account'>
+            <Typography
+              component={'span'}
+              variant='bodySmall'
+              sx={{ fontWeight: 'bold', color: 'text.primary' }}
+            >
+              프로필 페이지
+            </Typography>
           </Link>
           에서 수정해주세요.
         </Typography>

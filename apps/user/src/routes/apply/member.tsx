@@ -166,6 +166,7 @@ function ApplyMember() {
       });
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 500) {
+        console.log(error);
         openSingleButtonDialog({
           dialogIconType: DialogIconType.WARNING,
           title: '신청 오류 발생',

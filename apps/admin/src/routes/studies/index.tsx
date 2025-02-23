@@ -4,6 +4,7 @@ import { GridActionsCellItem, GridColDef, GridRowId } from '@mui/x-data-grid';
 
 import { Table } from '@packages/components/table/Table';
 import { Study } from '@packages/components/types/study';
+import { CURRENT_SEMESTER, CURRENT_YEAR } from '@packages/constants';
 import { deleteStudy, getAllStudies } from '@services/study.service';
 import { DialogIconType, useDialogStore } from '@stores/dialog.store';
 import { useQueries, useQueryClient } from '@tanstack/react-query';
@@ -88,7 +89,7 @@ function StudiesPage() {
 
   const queryConfigs = [];
 
-  for (let year = 2018; year <= 2024; year++) {
+  for (let year = 2018; year <= CURRENT_YEAR; year++) {
     for (let semester = 1; semester <= 2; semester++) {
       queryConfigs.push({
         queryKey: ['studies', year, semester],
@@ -107,7 +108,7 @@ function StudiesPage() {
     <Box>
       <Title
         title='역대 스터디 목록'
-        label='2018년 1학기부터 2024년 2학기까지의 스터디 정보입니다.'
+        label={`2018년 1학기부터 ${CURRENT_YEAR}년 ${CURRENT_SEMESTER}까지의 스터디 정보입니다.`}
       />
       <Layout>
         <Box sx={{ height: 640, width: '100%', my: 2 }}>
