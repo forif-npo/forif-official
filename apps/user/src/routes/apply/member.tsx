@@ -360,7 +360,7 @@ function ApplyMember() {
                 variant='contained'
                 size='large'
                 fullWidth
-                disabled={true}
+                disabled={!isIncluded}
               >
                 제출
               </Button>
