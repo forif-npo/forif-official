@@ -18,7 +18,10 @@ export async function getAnnouncement(id: GridRowId) {
   return announcement;
 }
 
-export async function addAnnouncement(announcement: Announcement) {
+interface AnnouncementForm
+  extends Omit<Announcement, 'created_at' | 'type' | 'id'> {}
+
+export async function addAnnouncement(announcement: AnnouncementForm) {
   const newAnnouncement: Announcement = await authApi
     .post('/posts/announcements', announcement)
     .then((res) => res.data);

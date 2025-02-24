@@ -1,3 +1,4 @@
+import { Semester } from '@packages/components/types/semester';
 import { User } from '@packages/components/types/user';
 
 import { authApi } from './axios-instance';
@@ -50,9 +51,10 @@ export const getStudyNames = (applications: AllApplication[]) => {
   return studyNames;
 };
 
-export async function getAllApplications() {
+export async function getAllApplications({ year, semester }: Semester) {
+  const params = { year, semester };
   const applications: AllApplication[] = await authApi
-    .get(`/applications`)
+    .get(`/applications`, { params })
     .then((res) => res.data);
   return applications;
 }

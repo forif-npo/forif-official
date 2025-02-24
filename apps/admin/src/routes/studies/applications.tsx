@@ -2,6 +2,8 @@ import { Box } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 
 import { Table } from '@packages/components/table/Table';
+import { Semester } from '@packages/components/types/semester';
+import { CURRENT_SEMESTER, CURRENT_YEAR } from '@packages/constants';
 import { Application, getAllApplications } from '@services/admin.service';
 import { useQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
@@ -9,8 +11,15 @@ import dayjs from 'dayjs';
 
 import { Layout } from '@components/common/Layout';
 import { Title } from '@components/common/Title';
+import { AllApplicationFilter } from '@components/study/AllApplicationFilter';
 
 export const Route = createFileRoute('/studies/applications')({
+  validateSearch: (search: Record<string, unknown>): Semester => {
+    return {
+      year: Number(search?.year ?? CURRENT_YEAR),
+      semester: Number(search?.semester ?? CURRENT_SEMESTER),
+    };
+  },
   component: ApplicationsPage,
 });
 
@@ -30,9 +39,10 @@ const columns: GridColDef<Application>[] = [
 ];
 
 function ApplicationsPage() {
+  const { year, semester }: Semester = Route.useSearch();
   const { data: applications, isLoading } = useQuery({
-    queryKey: ['all-applications'],
-    queryFn: () => getAllApplications(),
+    queryKey: ['all-applications', year, semester],
+    queryFn: () => getAllApplications({ year, semester }),
   });
 
   return (
@@ -42,6 +52,7 @@ function ApplicationsPage() {
         label='모든 스터디 신청서를 관리합니다.'
       />
       <Layout>
+        <AllApplicationFilter year={year} semester={semester} />
         <Table
           loading={isLoading}
           columns={columns}

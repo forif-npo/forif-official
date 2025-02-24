@@ -53,7 +53,11 @@ export default function AnnouncementDialog({
   const handleAdd = () => {
     const formData = form.getValues();
     try {
-      addAnnouncement(formData);
+      addAnnouncement({
+        title: formData.title,
+        content: formData.content,
+        created_by: formData.created_by,
+      });
       openSingleButtonDialog({
         title: '공지사항 추가',
         message: '공지사항이 추가되었습니다.',

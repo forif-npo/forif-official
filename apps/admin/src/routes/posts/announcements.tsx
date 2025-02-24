@@ -84,8 +84,6 @@ function FaqPage() {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  console.log(announcements);
-
   const handleRowClick = async (row: GridRowParams) => {
     try {
       const announcement: Announcement = await getAnnouncement(
