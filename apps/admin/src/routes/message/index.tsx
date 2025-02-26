@@ -33,7 +33,11 @@ import { Input } from '@packages/components/Input';
 import { Select } from '@packages/components/Select';
 import { FormInput } from '@packages/components/form/FormInput';
 import { FormSelect } from '@packages/components/form/FormSelect';
-import { REVIEW_END_DATE } from '@packages/constants';
+import {
+  CURRENT_SEMESTER,
+  CURRENT_YEAR,
+  REVIEW_END_DATE,
+} from '@packages/constants';
 import { AllApplication, getAllApplications } from '@services/admin.service';
 import {
   MessageBody,
@@ -140,7 +144,11 @@ function MessagePage() {
     useDialogStore();
   const { data: applications, isLoading } = useQuery({
     queryKey: ['all-applications'],
-    queryFn: () => getAllApplications(),
+    queryFn: () =>
+      getAllApplications({
+        year: CURRENT_YEAR,
+        semester: CURRENT_SEMESTER,
+      }),
   });
 
   useEffect(() => {
