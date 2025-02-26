@@ -7,6 +7,8 @@ import DarkLetterIcon from '@assets/logos/forif-letter-dark.svg?react';
 import LetterIcon from '@assets/logos/forif-letter.svg?react';
 import { Button } from '@packages/components/Button';
 import ToggleColorMode from '@packages/components/ToggleColorMode';
+import ToggleSeasonEffect from '@packages/components/ToggleSeasonEffect';
+import { useEffectStore } from '@stores/effect.store';
 import { setRefreshToken } from '@stores/token.store';
 import { clearUser, getUserState } from '@stores/user.store';
 import { Link } from '@tanstack/react-router';
@@ -18,14 +20,18 @@ import { AppBarProps } from '../../types/app-bar.type';
 import { DesktopNav } from './DesktopNav';
 import MobileNav from './MobileNav';
 
-export default function AppBar({ mode, toggleColorMode }: AppBarProps) {
+export default function AppBar({
+  mode,
+  toggleColorMode,
+  toggleSeasonEffect,
+}: AppBarProps) {
   const { activeMenu, handleMouseEnter, handleMouseLeave, handleClick } =
     useNavMenu();
 
   const userState = getUserState();
 
   const { handleSignIn } = useSignIn();
-
+  const { effectShow } = useEffectStore();
   const handleSignOut = () => {
     setRefreshToken(null);
     clearUser();
@@ -82,6 +88,7 @@ export default function AppBar({ mode, toggleColorMode }: AppBarProps) {
           <MobileNav
             mode={mode}
             userState={userState}
+            toggleSeasonEffect={toggleSeasonEffect}
             toggleColorMode={toggleColorMode}
             handleSignIn={handleSignIn}
             handleSignOut={handleSignOut}
@@ -93,6 +100,10 @@ export default function AppBar({ mode, toggleColorMode }: AppBarProps) {
               alignItems: 'center',
             }}
           >
+            <ToggleSeasonEffect
+              show={effectShow}
+              toggleSeasonEffect={toggleSeasonEffect}
+            />
             <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
             {userState === 'sign-out' ? (
               <>

@@ -1,3 +1,5 @@
+import Snowfall from 'react-snowfall';
+
 import AddchartIcon from '@mui/icons-material/Addchart';
 import CloudIcon from '@mui/icons-material/Cloud';
 import ShareIcon from '@mui/icons-material/Share';
@@ -16,6 +18,7 @@ import {
   RECRUIT_END_DATE,
   RECRUIT_START_DATE,
 } from '@packages/constants';
+import { useEffectStore } from '@stores/effect.store';
 import { getUserState } from '@stores/user.store';
 import { Link, createFileRoute } from '@tanstack/react-router';
 
@@ -45,6 +48,7 @@ function Home() {
 
   const { handleSignIn } = useSignIn();
   const titleVariant = isMobile ? 'titleSmall' : 'titleLarge';
+  const { effectShow } = useEffectStore();
 
   return (
     <main>
@@ -55,12 +59,18 @@ function Home() {
           paddingBottom: 3,
           gap: 3,
           textAlign: 'center',
-          maxWidth: '780px',
           margin: 'auto',
           minHeight: isMobile ? '80vh' : '100vh',
           position: 'relative',
         }}
       >
+        {effectShow && (
+          <Snowfall
+            color={theme.palette.primary.main}
+            snowflakeCount={200}
+            radius={[1, 1.5]}
+          />
+        )}
         <Typography
           variant={isMobile ? 'displaySmall' : 'displayLarge'}
           color='text.primary'

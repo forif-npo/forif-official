@@ -23,8 +23,10 @@ import {
 } from '@constants/nav-menu.constant';
 import { Button } from '@packages/components/Button';
 import ToggleColorMode from '@packages/components/ToggleColorMode';
+import ToggleSeasonEffect from '@packages/components/ToggleSeasonEffect';
 import { User } from '@packages/components/types/user';
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '@packages/constants';
+import { useEffectStore } from '@stores/effect.store';
 import { Link } from '@tanstack/react-router';
 
 import { useMobileNav } from '@hooks/useMobileNav';
@@ -43,9 +45,11 @@ export default function MobileNav({
   mode,
   userState,
   toggleColorMode,
+  toggleSeasonEffect,
 }: MobileNavProps) {
   const { open, toggleDrawer } = useMobileNav();
   const [selectedNavMenus, setSelectedNavMenus] = useState<NavMenu[]>([]);
+  const { effectShow } = useEffectStore();
 
   useEffect(() => {
     const navMenus = userState === 'sign-out' ? NAV_MENUS : AUTH_NAV_MENUS;
@@ -91,6 +95,10 @@ export default function MobileNav({
                 flexGrow: 1,
               }}
             >
+              <ToggleSeasonEffect
+                show={effectShow}
+                toggleSeasonEffect={toggleSeasonEffect}
+              />
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Box
                 onClick={toggleDrawer(false)}

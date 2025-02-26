@@ -10,6 +10,7 @@ import useMediaQuery from '@mui/system/useMediaQuery';
 import * as ChannelService from '@channel.io/channel-web-sdk-loader';
 import { PaletteMode } from '@packages/components/PaletteMode';
 import { darkTheme, lightTheme } from '@packages/components/theme.ts';
+import { useEffectStore } from '@stores/effect.store';
 import {
   QueryClient,
   QueryClientProvider,
@@ -40,6 +41,8 @@ function RootComponent() {
       (prefersDarkMode ? 'dark' : 'light'),
   );
 
+  const { toggleEffect } = useEffectStore();
+
   useEffect(() => {
     localStorage.setItem('mode', mode);
   }, [mode]);
@@ -47,7 +50,6 @@ function RootComponent() {
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
-
   const queryClient = new QueryClient();
   useInitializeAuth();
   ReactGA.initialize(GA4_MEASUREMENT_ID);
@@ -76,7 +78,11 @@ function RootComponent() {
           >
             <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
               <CssBaseline />
-              <AppBar mode={mode} toggleColorMode={toggleColorMode} />
+              <AppBar
+                mode={mode}
+                toggleColorMode={toggleColorMode}
+                toggleSeasonEffect={toggleEffect}
+              />
               <Box component={'main'} minHeight={'100vh'}>
                 <Outlet />
               </Box>

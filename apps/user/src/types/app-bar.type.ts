@@ -2,6 +2,7 @@ import { PaletteMode } from '@packages/components/PaletteMode';
 
 export interface AppBarProps {
   mode: PaletteMode;
+  toggleSeasonEffect: () => void;
   toggleColorMode: () => void;
 }
 
