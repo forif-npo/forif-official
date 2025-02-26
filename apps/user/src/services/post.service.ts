@@ -1,4 +1,4 @@
-import { Announcement, FAQ } from '@packages/components/types/post';
+import { Announcement, FAQ, TechBlog } from '@packages/components/types/post';
 
 import { api } from './axios-instance';
 
@@ -20,3 +20,17 @@ export const getFaqs = async () => {
   const data: FAQ[] = await api.get('/posts/faqs').then((res) => res.data);
   return data;
 };
+
+export async function getTechBlog(id: string) {
+  const techBlog: TechBlog = await api
+    .get(`/posts/techs/${id}`)
+    .then((res) => res.data);
+  return techBlog;
+}
+
+export async function getTechBlogs() {
+  const techBlogs: TechBlog[] = await api
+    .get('/posts/techs')
+    .then((res) => res.data);
+  return techBlogs;
+}

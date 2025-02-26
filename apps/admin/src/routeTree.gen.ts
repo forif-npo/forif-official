@@ -22,6 +22,7 @@ import { Route as StudiesMeImport } from './routes/studies/me'
 import { Route as StudiesApproveImport } from './routes/studies/approve'
 import { Route as StudiesApplicationsImport } from './routes/studies/applications'
 import { Route as StudiesAcceptImport } from './routes/studies/accept'
+import { Route as PostsTechBlogImport } from './routes/posts/tech-blog'
 import { Route as PostsFaqsImport } from './routes/posts/faqs'
 import { Route as PostsAnnouncementsImport } from './routes/posts/announcements'
 import { Route as MembersAttendanceImport } from './routes/members/attendance'
@@ -83,6 +84,11 @@ const StudiesAcceptRoute = StudiesAcceptImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const PostsTechBlogRoute = PostsTechBlogImport.update({
+  path: '/posts/tech-blog',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const PostsFaqsRoute = PostsFaqsImport.update({
   path: '/posts/faqs',
   getParentRoute: () => rootRoute,
@@ -128,6 +134,13 @@ declare module '@tanstack/react-router' {
       path: '/posts/faqs'
       fullPath: '/posts/faqs'
       preLoaderRoute: typeof PostsFaqsImport
+      parentRoute: typeof rootRoute
+    }
+    '/posts/tech-blog': {
+      id: '/posts/tech-blog'
+      path: '/posts/tech-blog'
+      fullPath: '/posts/tech-blog'
+      preLoaderRoute: typeof PostsTechBlogImport
       parentRoute: typeof rootRoute
     }
     '/studies/accept': {
@@ -210,6 +223,7 @@ export const routeTree = rootRoute.addChildren({
   MembersAttendanceRoute,
   PostsAnnouncementsRoute,
   PostsFaqsRoute,
+  PostsTechBlogRoute,
   StudiesAcceptRoute,
   StudiesApplicationsRoute,
   StudiesApproveRoute,
@@ -234,6 +248,7 @@ export const routeTree = rootRoute.addChildren({
         "/members/attendance",
         "/posts/announcements",
         "/posts/faqs",
+        "/posts/tech-blog",
         "/studies/accept",
         "/studies/applications",
         "/studies/approve",
@@ -257,6 +272,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/posts/faqs": {
       "filePath": "posts/faqs.tsx"
+    },
+    "/posts/tech-blog": {
+      "filePath": "posts/tech-blog.tsx"
     },
     "/studies/accept": {
       "filePath": "studies/accept.tsx"

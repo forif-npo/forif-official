@@ -1,6 +1,6 @@
 import { GridRowId } from '@mui/x-data-grid';
 
-import { Announcement, FAQ } from '@packages/components/types/post';
+import { Announcement, FAQ, TechBlog } from '@packages/components/types/post';
 
 import { api, authApi } from './axios-instance';
 
@@ -67,4 +67,44 @@ export async function editFaq(faq: FAQ) {
 
 export async function deleteFaq(id: GridRowId) {
   await authApi.delete(`/posts/faqs/${id}`);
+}
+
+export async function getTechBlog(id: GridRowId) {
+  const techBlog: TechBlog = await api
+    .get(`/posts/techs/${id}`)
+    .then((res) => res.data);
+  return techBlog;
+}
+
+export async function getTechBlogs() {
+  const techBlogs: TechBlog[] = await api
+    .get('/posts/techs')
+    .then((res) => res.data);
+  return techBlogs;
+}
+
+export async function addTechBlog({
+  tag,
+  title,
+  content,
+}: {
+  tag: string;
+  title: string;
+  content: string;
+}) {
+  const newTechBlog: TechBlog = await authApi
+    .post('/posts/techs', { title, content, tag })
+    .then((res) => res.data);
+  return newTechBlog;
+}
+
+export async function editTechBlog(techBlog: TechBlog) {
+  const updatedTechBlog: TechBlog = await authApi
+    .patch(`/posts/techs/${techBlog.id}`, techBlog)
+    .then((res) => res.data);
+  return updatedTechBlog;
+}
+
+export async function deleteTechBlog(id: GridRowId) {
+  await authApi.delete(`/posts/techs/${id}`);
 }

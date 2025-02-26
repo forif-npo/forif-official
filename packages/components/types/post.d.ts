@@ -14,3 +14,10 @@ export interface FAQ extends Post {
   tag: string;
   type: 'FAQ';
 }
+
+export interface TechBlog extends Post {
+  created_by: string;
+  tag: string;
+  type: '기술 블로그';
+  author_name: string;
+}

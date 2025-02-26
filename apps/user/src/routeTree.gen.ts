@@ -15,9 +15,11 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as IndexImport } from './routes/index'
+import { Route as TechBlogIndexImport } from './routes/tech-blog/index'
 import { Route as StudiesIndexImport } from './routes/studies/index'
 import { Route as FaqIndexImport } from './routes/faq/index'
 import { Route as AnnouncementIndexImport } from './routes/announcement/index'
+import { Route as TechBlogIdImport } from './routes/tech-blog/$id'
 import { Route as StudiesRecommendationImport } from './routes/studies/recommendation'
 import { Route as StudiesGuideImport } from './routes/studies/guide'
 import { Route as StudiesStudyIdImport } from './routes/studies/$studyId'
@@ -67,6 +69,11 @@ const HackathonIndexLazyRoute = HackathonIndexLazyImport.update({
   import('./routes/hackathon/index.lazy').then((d) => d.Route),
 )
 
+const TechBlogIndexRoute = TechBlogIndexImport.update({
+  path: '/tech-blog/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const StudiesIndexRoute = StudiesIndexImport.update({
   path: '/studies/',
   getParentRoute: () => rootRoute,
@@ -79,6 +86,11 @@ const FaqIndexRoute = FaqIndexImport.update({
 
 const AnnouncementIndexRoute = AnnouncementIndexImport.update({
   path: '/announcement/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TechBlogIdRoute = TechBlogIdImport.update({
+  path: '/tech-blog/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -279,6 +291,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudiesRecommendationImport
       parentRoute: typeof rootRoute
     }
+    '/tech-blog/$id': {
+      id: '/tech-blog/$id'
+      path: '/tech-blog/$id'
+      fullPath: '/tech-blog/$id'
+      preLoaderRoute: typeof TechBlogIdImport
+      parentRoute: typeof rootRoute
+    }
     '/announcement/': {
       id: '/announcement/'
       path: '/announcement'
@@ -298,6 +317,13 @@ declare module '@tanstack/react-router' {
       path: '/studies'
       fullPath: '/studies'
       preLoaderRoute: typeof StudiesIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/tech-blog/': {
+      id: '/tech-blog/'
+      path: '/tech-blog'
+      fullPath: '/tech-blog'
+      preLoaderRoute: typeof TechBlogIndexImport
       parentRoute: typeof rootRoute
     }
     '/hackathon/': {
@@ -369,9 +395,11 @@ export const routeTree = rootRoute.addChildren({
   StudiesStudyIdRoute,
   StudiesGuideRoute,
   StudiesRecommendationRoute,
+  TechBlogIdRoute,
   AnnouncementIndexRoute,
   FaqIndexRoute,
   StudiesIndexRoute,
+  TechBlogIndexRoute,
   HackathonIndexLazyRoute,
 })
 
@@ -398,9 +426,11 @@ export const routeTree = rootRoute.addChildren({
         "/studies/$studyId",
         "/studies/guide",
         "/studies/recommendation",
+        "/tech-blog/$id",
         "/announcement/",
         "/faq/",
         "/studies/",
+        "/tech-blog/",
         "/hackathon/"
       ]
     },
@@ -456,6 +486,9 @@ export const routeTree = rootRoute.addChildren({
     "/studies/recommendation": {
       "filePath": "studies/recommendation.tsx"
     },
+    "/tech-blog/$id": {
+      "filePath": "tech-blog/$id.tsx"
+    },
     "/announcement/": {
       "filePath": "announcement/index.tsx"
     },
@@ -464,6 +497,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/studies/": {
       "filePath": "studies/index.tsx"
+    },
+    "/tech-blog/": {
+      "filePath": "tech-blog/index.tsx"
     },
     "/hackathon/": {
       "filePath": "hackathon/index.lazy.tsx"
