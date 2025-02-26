@@ -56,6 +56,7 @@ const HYU_DEPARTMENTS: {
   국제학부: ['국제학부'],
   간호대학: ['간호학과'],
   산업융합학부: ['산업융합학부'],
+  한양인터칼리지: ['한양인터칼리지'],
 };
 
 const DEPARTMENT_OPTIONS = Object.entries(HYU_DEPARTMENTS).flatMap(

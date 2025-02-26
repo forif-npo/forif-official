@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import { Stack, Typography, styled } from '@mui/material';
 import { Box } from '@mui/system';
 
-import { DEPARTMENT_OPTIONS } from '@constants/department.constant';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@packages/components/Button';
 import { FormAutocomplete } from '@packages/components/form/FormAutocomplete';
 import { FormCheckbox } from '@packages/components/form/FormCheckbox';
 import { FormInput } from '@packages/components/form/FormInput';
 import { User } from '@packages/components/types/user';
+import { DEPARTMENT_OPTIONS } from '@packages/constants';
 import { handleSignUp } from '@services/auth.service';
 import { DialogIconType, useDialogStore } from '@stores/dialog.store';
 import useToastStore from '@stores/toast.store';

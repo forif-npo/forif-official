@@ -3,11 +3,11 @@ import { Path, useForm } from 'react-hook-form';
 
 import { Dialog, DialogTitle, Stack } from '@mui/material';
 
-import { DEPARTMENT_OPTIONS } from '@constants/department.constant';
 import { Button } from '@packages/components/Button';
 import { FormAutocomplete } from '@packages/components/form/FormAutocomplete';
 import { FormInput } from '@packages/components/form/FormInput';
 import { UserProfile } from '@packages/components/types/user';
+import { DEPARTMENT_OPTIONS } from '@packages/constants';
 import { UpdateUser, updateUser } from '@services/user.service';
 import { DialogIconType, useDialogStore } from '@stores/dialog.store';
 import { useRouter } from '@tanstack/react-router';
