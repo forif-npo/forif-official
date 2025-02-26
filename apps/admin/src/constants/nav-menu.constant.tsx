@@ -59,6 +59,7 @@ export const ADMIN_NAV_MENUS: NavMenu[] = [
     submenu: [
       { title: '공지사항 관리', href: '/posts/announcements' },
       { title: 'FAQ 관리', href: '/posts/faqs' },
+      { title: '기술블로그 관리', href: '/posts/tech-blog' },
     ],
   },
   {
