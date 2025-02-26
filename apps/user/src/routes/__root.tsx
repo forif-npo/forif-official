@@ -41,11 +41,18 @@ function RootComponent() {
       (prefersDarkMode ? 'dark' : 'light'),
   );
 
-  const { toggleEffect } = useEffectStore();
+  const { toggleEffect, setEffect } = useEffectStore();
 
   useEffect(() => {
     localStorage.setItem('mode', mode);
   }, [mode]);
+
+  useEffect(() => {
+    if (localStorage.getItem('effectShow') === null) {
+      localStorage.setItem('effectShow', 'true');
+    }
+    setEffect(localStorage.getItem('effectShow') === 'true');
+  }, [setEffect]);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
