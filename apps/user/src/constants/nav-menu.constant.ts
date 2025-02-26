@@ -32,6 +32,10 @@ export const NAV_MENUS: NavMenu[] = [
     href: '/announcement',
   },
   {
+    title: '기술 블로그',
+    href: '/tech-blog',
+  },
+  {
     title: '자주 묻는 질문',
     href: '/faq',
   },
