@@ -37,6 +37,7 @@ import {
   getTechBlogs,
 } from '@services/post.service';
 import { DialogIconType, useDialogStore } from '@stores/dialog.store';
+import { getUser } from '@stores/user.store';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import dayjs from 'dayjs';
@@ -54,6 +55,8 @@ export const Route = createFileRoute('/posts/tech-blog')({
 function TechBlogPage() {
   const { openDualButtonDialog, openSingleButtonDialog, closeDialog } =
     useDialogStore();
+
+  const { name } = getUser();
 
   const {
     data: techBlogs,
@@ -243,7 +246,7 @@ function TechBlogPage() {
       <Title title='기술 블로그' label='일기를 생활화 합시다' />
       <Layout>
         <Typography variant='bodySmall'>
-          현재 <strong>표준성</strong>님으로 로그인되어 있습니다. 작성자 이름에
+          현재 <strong>{name}</strong>님으로 로그인되어 있습니다. 작성자 이름에
           해당 이름이 자동으로 입력됩니다.
         </Typography>
         <Typography variant='bodySmall'>
