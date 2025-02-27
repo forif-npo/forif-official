@@ -22,6 +22,11 @@ export const NAV_MENUS: NavMenu[] = [
       { title: '수강 승인', href: '/studies/accept' },
     ],
   },
+  {
+    title: '게시물',
+    icon: <CampaignIcon />,
+    submenu: [{ title: '기술블로그 관리', href: '/posts/tech-blog' }],
+  },
 ];
 
 export const ADMIN_NAV_MENUS: NavMenu[] = [
