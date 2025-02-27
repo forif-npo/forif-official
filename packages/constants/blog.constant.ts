@@ -28,6 +28,10 @@ const BLOG_TAG_OPTIONS: SelectOption[] = [
     value: 'FORIF TEAM',
     label: '포리프 팀',
   },
+  {
+    value: 'TRAVEL',
+    label: '여행',
+  },
 ];
 
 export { BLOG_TAG_OPTIONS };
