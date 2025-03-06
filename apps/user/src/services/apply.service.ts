@@ -34,7 +34,7 @@ export const updateApplication = async (
   application: z.infer<typeof ApplyMemberSchema>,
 ) => {
   await authApi
-    .patch(`/applications/me`, {
+    .patch(`/applications/me?year=${CURRENT_YEAR}&semester=${CURRENT_SEMESTER}`, {
       primary_study: Number(application.primary_study),
       primary_intro: application.primary_intro,
       secondary_study:
