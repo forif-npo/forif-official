@@ -111,7 +111,7 @@ export const TAG_OPTIONS = [
   },
 ];
 
-export const REVIEW_START_DATE = '2025-03-07T00:00:00';
+export const REVIEW_START_DATE = '2025-03-06T15:00:00';
 export const REVIEW_END_DATE = '2025-03-08T10:00:00';
 
 export const MENTOR_RECRUIT_START_DATE = '2025-02-10';
