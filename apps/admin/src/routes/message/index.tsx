@@ -115,6 +115,7 @@ function MessagePage() {
     const selectedTemplate = templateList?.templateList.find(
       (template) => template.templateId === templateCode,
     );
+
     if (selectedTemplate) {
       const filledTemplate = {
         content: selectedTemplate.content
@@ -201,7 +202,7 @@ function MessagePage() {
               // 조건에 맞는 사용자에게 메시지 발송
               const phoneNumber = application.phone_number;
               const studyName =
-                application.primary_status === '승낙'
+                application.primary_status === 1
                   ? application.primary_study_name
                   : application.secondary_study_name;
 

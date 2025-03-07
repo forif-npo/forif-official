@@ -28,8 +28,8 @@ export interface AllApplication extends Omit<Application, 'intro'> {
   secondary_intro: null;
   pay_yn: string;
   apply_date: string;
-  primary_status: string;
-  secondary_status: string | null;
+  primary_status: 0 | 1; // 0: 대기, 1: 승낙
+  secondary_status: 0 | 1; // 0: 대기, 1: 승낙
 }
 
 export async function getApplications(studyId: StudyId) {
