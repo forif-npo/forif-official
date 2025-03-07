@@ -142,9 +142,9 @@ function FAQPage() {
               >
                 <PhoneIcon fontSize='inherit' />
                 <Typography variant='titleSmall' textAlign={'center'}>
-                  포리프 13기 회장 표준성
+                  포리프 14기 회장 권기태
                   <br />
-                  (010-2078-9868)
+                  (010-7764-2502)
                 </Typography>
               </Stack>
             </a>
