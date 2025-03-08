@@ -215,6 +215,8 @@ function MyApplication() {
     );
   }
 
+  console.log(application);
+
   return (
     <Box width={'100%'}>
       <Title

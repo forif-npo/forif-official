@@ -24,8 +24,8 @@ export function ApplicationState({
   useEffect(() => {
     if (application) {
       if (
-        application.primary_study.status === '대기' ||
-        application.secondary_study?.status === '대기'
+        application.primary_study.status === 0 ||
+        application.secondary_study?.status === 0
       )
         setActiveStep(1);
       if (currentDate.isAfter(dayjs(REVIEW_START_DATE))) setActiveStep(2);
@@ -100,12 +100,19 @@ export function ApplicationState({
             <Box>
               <ApplicationStateContents priority='primary' />
               {activeStep === 3 && (
-                <Typography variant='bodySmall' mt={2} textAlign={'center'}>
-                  스터디 지원 결과:{' '}
-                  {application!.primary_study.status === '승낙'
-                    ? '합격'
-                    : '불합격'}
-                </Typography>
+                <>
+                  <Typography variant='bodySmall' mt={2} textAlign={'center'}>
+                    스터디 지원 결과:{' '}
+                    {application!.primary_study.status === 1
+                      ? '합격'
+                      : '불합격'}
+                  </Typography>
+                  <Typography variant='bodySmall' mt={2} textAlign={'center'}>
+                    {application!.primary_study.status === 1
+                      ? '축하드립니다! 빠른 시일 내로 카카오톡 문자 메세지로 발송드릴 예정입니다.'
+                      : ''}
+                  </Typography>
+                </>
               )}
             </Box>
           </Box>
@@ -120,7 +127,7 @@ export function ApplicationState({
                 <Typography variant='bodySmall' mt={2} textAlign={'center'}>
                   스터디 지원 결과:{' '}
                   {application?.secondary_study &&
-                  application!.secondary_study.status === '승낙'
+                  application!.secondary_study.status === 1
                     ? '합격'
                     : '불합격'}
                 </Typography>

@@ -161,14 +161,14 @@ export interface PrimaryStudy {
   id: number;
   name: string;
   introduction: string;
-  status: '승낙' | '대기';
+  status: 1 | 0;
 }
 
 export interface SecondaryStudy {
   id: number;
   name: string;
   introduction: string;
-  status: '승낙' | '대기';
+  status: 1 | 0;
 }
 
 export interface StudyPlan {
