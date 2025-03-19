@@ -1,6 +1,8 @@
 # FORIF-OFFICIAL
-포리프 공식 웹사이트 코드입니다. 구체적인 코드 작성 컨벤션을 안내드리겠습니다!
+Hanyang University's largest academic central programming club!
 
+포리프 공식 웹사이트 코드입니다.
+아래 폰트 규칙에 의거하여 사용해주세요.
 # Font Style
 기본 타입 스케일에는 Large, Medium, Small의 세 가지 디스플레이 스타일이 있어요.
 
