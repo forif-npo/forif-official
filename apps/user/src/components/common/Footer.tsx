@@ -7,7 +7,7 @@ import { visuallyHidden } from '@mui/utils';
 
 import DarkLetterIcon from '@assets/logos/forif-letter-dark.svg?react';
 import LetterIcon from '@assets/logos/forif-letter.svg?react';
-import { CURRENT_YEAR } from '@packages/constants';
+import { CURRENT_SEMESTER, CURRENT_YEAR } from '@packages/constants';
 import { Link } from '@tanstack/react-router';
 
 export default function Component({ mode }: { mode: PaletteMode }) {
@@ -84,8 +84,8 @@ export default function Component({ mode }: { mode: PaletteMode }) {
           <Link
             to='/studies'
             search={{
-              semester: 2,
-              year: 2024,
+              semester: CURRENT_SEMESTER,
+              year: CURRENT_YEAR,
             }}
           >
             <Typography
