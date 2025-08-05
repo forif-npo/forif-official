@@ -8,6 +8,7 @@ import {
   ModalTitle,
   ModalTrigger,
 } from '@packages/components/Modal';
+import { RECRUIT_END_DATE, RECRUIT_START_DATE } from '@packages/constants';
 import { Link } from '@tanstack/react-router';
 
 export default function CautionList() {
@@ -135,8 +136,8 @@ export default function CautionList() {
           를 이용해주세요.
         </Typography>
         <Typography component={'li'} variant='bodySmall'>
-          스터디 신청 기간은 2024-08-26 ~ 2024-09-11입니다. 이 기간 이후에는{' '}
-          <strong>신청서 수정이 불가능합니다.</strong>
+          스터디 신청 기간은 {RECRUIT_START_DATE} ~ {RECRUIT_END_DATE}입니다. 이
+          기간 이후에는 <strong>신청서 수정이 불가능합니다.</strong>
         </Typography>
         <Typography component={'li'} variant='bodySmall'>
           어떤 스터디를 들을 지 마음이 정해지지 않았다면, 포리프의 스터디 추천
