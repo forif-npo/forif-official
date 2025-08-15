@@ -117,7 +117,7 @@ export const REVIEW_END_DATE = '2025-08-18T10:00:00';
 export const MENTOR_RECRUIT_START_DATE = '2025-08-11';
 export const MENTOR_RECRUIT_END_DATE = '2025-08-15';
 
-export const RECRUIT_START_DATE = '2025-09-01';
+export const RECRUIT_START_DATE = '2025-08-25';
 export const RECRUIT_END_DATE = '2025-09-04T15:00:00';
 
 export const CURRENT_YEAR = 2025;

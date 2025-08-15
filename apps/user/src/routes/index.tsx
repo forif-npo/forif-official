@@ -21,6 +21,7 @@ import {
 import { useEffectStore } from '@stores/effect.store';
 import { getUserState } from '@stores/user.store';
 import { Link, createFileRoute } from '@tanstack/react-router';
+import dayjs from '@utils/dayjs';
 
 import GravityBox from '@components/main/GravityBox';
 import JourneyImageList from '@components/main/JourneyImageList';
@@ -79,7 +80,8 @@ function Home() {
           Upgrade your passion
         </Typography>
         <Typography variant={titleVariant} fontWeight={400}>
-          {RECRUIT_START_DATE} ~ {RECRUIT_END_DATE}
+          {dayjs(RECRUIT_START_DATE).format('YYYY년 M월 D일')} ~{' '}
+          {dayjs(RECRUIT_END_DATE).format('YYYY년 M월 D일 A h시')}
         </Typography>
         <Stack direction={'row'} alignItems={'center'} gap={1}>
           {userState === 'sign-out' && (
