@@ -69,7 +69,7 @@ export function StudyList({ year, semester, difficulty }: StudyProps) {
             />
           </Grid>
         ))}
-        {studies.length === 0 && (
+        {studies.length === 0 ? (
           <CenteredBox width={'100%'} height={320} my={8}>
             <NotFoundPeeps />
             <Typography variant='titleMedium'>
@@ -79,18 +79,19 @@ export function StudyList({ year, semester, difficulty }: StudyProps) {
               스터디가 없는 듯 해요. 오류일 수 있으니 다시 시도해주세요.
             </Typography>
           </CenteredBox>
+        ) : (
+          <Grid item xl={3} md={4} sm={6} xs={12}>
+            <StudyCard
+              id={0}
+              image={'/cutie.svg'}
+              primaryMentorName={''}
+              secondaryMentorName={''}
+              difficulty={0}
+              title={'자율스터디'}
+              tag='자율'
+            />
+          </Grid>
         )}
-        <Grid item xl={3} md={4} sm={6} xs={12}>
-          <StudyCard
-            id={0}
-            image={'/cutie.svg'}
-            primaryMentorName={''}
-            secondaryMentorName={''}
-            difficulty={0}
-            title={'자율스터디'}
-            tag='자율'
-          />
-        </Grid>
       </Grid>
     </Box>
   );
