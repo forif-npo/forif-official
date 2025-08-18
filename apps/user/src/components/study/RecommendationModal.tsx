@@ -398,7 +398,7 @@ export function StudyRecommendationModal({
                 }}
               >
                 <Button variant='contained' onClick={onClose} size='large'>
-                  24년 2학기 개설 스터디 목록 보러가기
+                  25년 2학기 개설 스터디 목록 보러가기
                 </Button>
               </Link>
             </Box>
