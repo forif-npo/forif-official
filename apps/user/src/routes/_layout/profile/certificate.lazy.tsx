@@ -20,7 +20,10 @@ function CertificationPage() {
       />
       <Layout>
         <CenteredBox height={480}>
-          <Box>현재 개발 중인 기능입니다. 2학기 내로 개발될 예정입니다.</Box>
+          <Box>
+            인증서는 수료 인원 확정 후 카카오톡을 통해 전달될 예정입니다. 잠시
+            기다려주세요!
+          </Box>
         </CenteredBox>
       </Layout>
     </Box>

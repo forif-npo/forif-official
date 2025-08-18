@@ -24,8 +24,7 @@ import {
 import { Study } from '@packages/components/types/study';
 import { UserProfile } from '@packages/components/types/user';
 import { CURRENT_SEMESTER, CURRENT_YEAR } from '@packages/constants';
-import { getAttendance } from '@services/attendance.service';
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import formatMarkdown from '@utils/formatMarkdown';
 import { formatStudyTimeToKorean, getWeekDayAsString } from '@utils/time';
@@ -47,20 +46,6 @@ function MyStudy() {
   const currentStudy = useQuery<Study, AxiosError>({
     queryKey: ['currentStudy'],
     queryFn: () => getStudyInfo(user.current_study_id?.toString() || '0'),
-  });
-
-  const attendances = useQuery({
-    queryKey: ['attendance', user.id],
-    queryFn: () => getAttendance(user.id!),
-  });
-
-  const passedStudies = useQueries({
-    queries: (user.passed_study_id || []).map((studyId) => {
-      return {
-        queryKey: ['passedStudies', String(studyId)],
-        queryFn: () => getStudyInfo(studyId.toString()),
-      };
-    }),
   });
 
   if (currentStudy.isLoading) return null;
@@ -197,106 +182,6 @@ function MyStudy() {
                     </>
                   )}
                 </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item sm={12} md={4}>
-            <Card
-              sx={{
-                minWidth: 275,
-                height: 342,
-                backgroundColor: 'background.default',
-                borderRadius: 3,
-                boxShadow: 0,
-                p: 2,
-                border: '1px solid',
-                borderColor: 'divider',
-              }}
-            >
-              <CardContent>
-                <Typography variant='titleMedium' fontWeight={'bold'} mb={2}>
-                  출석 내역
-                </Typography>
-                <Stack
-                  divider={<Divider />}
-                  sx={{
-                    maxHeight: 200,
-                    overflow: 'auto',
-                  }}
-                >
-                  {attendances.data?.map((attendance) => (
-                    <Stack
-                      key={attendance.study_date}
-                      direction={'row'}
-                      alignItems={'center'}
-                      justifyContent={'space-between'}
-                      py={2}
-                    >
-                      <Typography variant='bodySmall'>
-                        ({attendance.week_num}주차)
-                      </Typography>
-                      <Typography
-                        variant='labelSmall'
-                        color={
-                          attendance.attendance_status === '출석'
-                            ? 'primary'
-                            : 'error'
-                        }
-                      >
-                        {attendance.attendance_status}
-                      </Typography>
-                    </Stack>
-                  ))}
-                </Stack>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item sm={12} md={8}>
-            <Card
-              sx={{
-                minWidth: 275,
-                height: 342,
-                backgroundColor: 'background.default',
-                borderRadius: 3,
-                boxShadow: 0,
-                p: 2,
-                border: '1px solid',
-                borderColor: 'divider',
-              }}
-            >
-              <CardContent>
-                <Typography variant='titleMedium' fontWeight={'bold'} mb={2}>
-                  역대 스터디 수강 내역
-                </Typography>
-                <Stack
-                  divider={<Divider />}
-                  sx={{
-                    maxHeight: 200,
-                    overflow: 'auto',
-                  }}
-                >
-                  {passedStudies.map((study) => {
-                    if (study.isLoading) return null;
-                    if (!study.data) return null;
-                    return (
-                      <Stack
-                        key={study.data.id}
-                        direction={'row'}
-                        alignItems={'center'}
-                        justifyContent={'space-between'}
-                        py={2}
-                      >
-                        <Typography variant='bodySmall'>
-                          {study.data.name} ({study.data.act_year}-
-                          {study.data.act_semester})
-                        </Typography>
-                        <Typography variant='labelSmall' color={'primary'}>
-                          {study.data.id === 0 ? '자율스터디' : '수료'}
-                        </Typography>
-                      </Stack>
-                    );
-                  })}
-                </Stack>
               </CardContent>
             </Card>
           </Grid>
