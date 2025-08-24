@@ -60,7 +60,7 @@ export function StudyList({ year, semester, difficulty }: StudyProps) {
           <Grid key={study.id} item xl={3} md={4} sm={6} xs={12}>
             <StudyCard
               id={study.id}
-              image={'/cutie.svg'}
+              image={study.image || '/cutie.svg'}
               primaryMentorName={study.primary_mentor_name}
               secondaryMentorName={study.secondary_mentor_name}
               difficulty={study.difficulty}
