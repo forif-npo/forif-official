@@ -11,7 +11,7 @@ interface ImageProps
 export default function Image({ src, alt, fallback, ...props }: ImageProps) {
   let fallbackSrc = fallback;
   if (fallbackSrc === undefined) {
-    fallbackSrc = 'https://via.placeholder.com/320x240?text=Image+Not+Found';
+    fallbackSrc = './cutie.svg';
   }
   if (!src) {
     return <img src={fallbackSrc} alt={alt} {...props} />;
