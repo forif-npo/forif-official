@@ -37,8 +37,6 @@ import { Title } from '@components/Title';
 import CautionList from '@components/apply/member/CautionList';
 import BlockModal from '@components/common/BlockModal';
 
-import { usePeriod } from '@hooks/usePeriod';
-
 const STORAGE_KEY = 'applyMemberForm';
 
 export const Route = createFileRoute('/apply/member')({
@@ -95,7 +93,8 @@ function ApplyMember() {
   const { closeDialog, openSingleButtonDialog } = useDialogStore();
 
   const { id, name, department, phone_number } = userInfo!;
-  const { isIncluded } = usePeriod(RECRUIT_START_DATE, RECRUIT_END_DATE);
+  // const { isIncluded } = usePeriod(RECRUIT_START_DATE, RECRUIT_END_DATE);
+  const isIncluded = false;
 
   const form = useForm<z.infer<typeof ApplyMemberSchema>>({
     resolver: zodResolver(ApplyMemberSchema),
