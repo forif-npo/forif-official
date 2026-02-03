@@ -106,9 +106,9 @@ jobs:
         if: env.user_changed == 'true' || env.admin_changed == 'true'
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          aws-region: ${{ secrets.AWS_DEFAULT_REGION}}
-          output-credentials: true
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       
       - name: S3에 배포 - User
         if: env.user_changed == 'true'
