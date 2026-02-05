@@ -111,14 +111,14 @@ export const TAG_OPTIONS = [
   },
 ];
 
-export const REVIEW_START_DATE = '2025-08-16T15:00:00';
-export const REVIEW_END_DATE = '2025-08-19T10:00:00';
+export const REVIEW_START_DATE = '2026-02-16T00:00:00';
+export const REVIEW_END_DATE = '2026-02-18T23:59:59';
 
-export const MENTOR_RECRUIT_START_DATE = '2025-08-11';
-export const MENTOR_RECRUIT_END_DATE = '2025-08-19';
+export const MENTOR_RECRUIT_START_DATE = '2026-02-09';
+export const MENTOR_RECRUIT_END_DATE = '2026-02-15';
 
-export const RECRUIT_START_DATE = '2025-08-25';
-export const RECRUIT_END_DATE = '2025-09-04T15:00:00';
+export const RECRUIT_START_DATE = '2026-00-00';
+export const RECRUIT_END_DATE = '2026-00-00T15:00:00';
 
-export const CURRENT_YEAR = 2025;
-export const CURRENT_SEMESTER = 2;
+export const CURRENT_YEAR = 2026;
+export const CURRENT_SEMESTER = 1;

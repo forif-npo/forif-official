@@ -68,7 +68,7 @@ export function MentorInfo({
               name='secondary_mentor_id'
               label='함께하는 멘토의 학번을 입력해주세요.'
               required
-              placeholder='2025063845'
+              placeholder='2026063845'
             />
           </>
         )}
