@@ -118,7 +118,7 @@ export const MENTOR_RECRUIT_START_DATE = '2026-02-09';
 export const MENTOR_RECRUIT_END_DATE = '2026-02-15';
 
 export const RECRUIT_START_DATE = '2026-02-23';
-export const RECRUIT_END_DATE = '2026-03-05T15:00:00';
+export const RECRUIT_END_DATE = '2026-03-05T16:00:00';
 
 export const CURRENT_YEAR = 2026;
 export const CURRENT_SEMESTER = 1;
