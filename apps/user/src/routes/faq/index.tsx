@@ -142,9 +142,9 @@ function FAQPage() {
               >
                 <PhoneIcon fontSize='inherit' />
                 <Typography variant='titleSmall' textAlign={'center'}>
-                  포리프 14기 회장 권기태
+                  포리프 16대 회장 조민성
                   <br />
-                  (010-7764-2502)
+                  (010-3981-2273)
                 </Typography>
               </Stack>
             </a>
