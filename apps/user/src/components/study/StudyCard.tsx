@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import CircleIcon from '@mui/icons-material/Circle';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import { CardMedia, Chip, Rating, styled } from '@mui/material';
@@ -30,6 +32,9 @@ export function StudyCard({
   difficulty,
   tag,
 }: StudyCardProps) {
+  const [imgError, setImgError] = useState(false);
+  const isFallback = image === '/cutie.svg' || imgError;
+
   const handleLinkClick = () => {
     window.scrollTo(0, 0);
   };
@@ -41,18 +46,19 @@ export function StudyCard({
           component={'picture'}
           sx={{
             width: '100%',
-            height: 240,
+            height: 450,
             bgcolor: 'white',
           }}
         >
           <Image
-            src={image!}
+            src={imgError ? '/cutie.svg' : image!}
             height={'100%'}
             alt={`card-image-${title}`}
             loading='lazy'
             title={title}
             width={'100%'}
-            style={{ objectFit: 'cover' }}
+            onError={() => setImgError(true)}
+            style={{ objectFit: isFallback ? 'contain' : 'cover' }}
           />
         </CardMedia>
         <MUICardContent
