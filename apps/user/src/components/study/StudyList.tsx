@@ -34,7 +34,7 @@ export function StudyList({ year, semester, difficulty }: StudyProps) {
         <Grid container spacing={{ xs: 2, xl: 4 }}>
           {Array.from({ length: 7 }, (_, index) => index + 1).map((item) => (
             <Grid key={item} item xl={3} md={4} sm={6} xs={12}>
-              <Skeleton variant='rounded' width={'100%'} height={450} />
+              <Skeleton variant='rounded' width={'100%'} sx={{ aspectRatio: '4 / 5' }} />
             </Grid>
           ))}
         </Grid>
