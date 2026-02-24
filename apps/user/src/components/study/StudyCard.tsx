@@ -46,7 +46,7 @@ export function StudyCard({
           component={'picture'}
           sx={{
             width: '100%',
-            height: 450,
+            aspectRatio: '4 / 5',
             bgcolor: 'white',
           }}
         >
