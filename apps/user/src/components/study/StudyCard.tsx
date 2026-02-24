@@ -43,22 +43,26 @@ export function StudyCard({
     <Link to={`/studies/${id}`} onClick={handleLinkClick}>
       <MUICard elevation={0} sx={{ border: 'none', borderRadius: 2 }}>
         <CardMedia
-          component={'picture'}
+          component={'div'}
           sx={{
             width: '100%',
             aspectRatio: '4 / 5',
             bgcolor: 'white',
+            overflow: 'hidden',
           }}
         >
           <Image
             src={imgError ? '/cutie.svg' : image!}
-            height={'100%'}
             alt={`card-image-${title}`}
             loading='lazy'
             title={title}
-            width={'100%'}
             onError={() => setImgError(true)}
-            style={{ objectFit: isFallback ? 'contain' : 'cover' }}
+            style={{
+              display: 'block',
+              width: '100%',
+              height: '100%',
+              objectFit: isFallback ? 'contain' : 'cover',
+            }}
           />
         </CardMedia>
         <MUICardContent
