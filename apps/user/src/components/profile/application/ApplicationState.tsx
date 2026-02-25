@@ -126,10 +126,11 @@ export function ApplicationState({
               {activeStep === 3 && (
                 <Typography variant='bodySmall' mt={2} textAlign={'center'}>
                   스터디 지원 결과:{' '}
-                  {application?.secondary_study &&
-                  application!.secondary_study.status === 1
-                    ? '합격'
-                    : '불합격'}
+                  {application?.secondary_study === null
+                    ? '지원 안함'
+                    : application!.secondary_study.status === 1
+                      ? '합격'
+                      : '불합격'}
                 </Typography>
               )}
             </Box>
