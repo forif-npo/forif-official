@@ -109,7 +109,7 @@ function TeamItem({
         onClick={handleInteraction}
       >
         <Image
-          src={prof_img_url!}
+          src={'/forif-circle.png'}
           width={'60%'}
           alt={`profile picture of ${user.name}`}
         />
