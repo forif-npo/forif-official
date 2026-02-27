@@ -73,7 +73,6 @@ export function TeamList({ year, semester }: TeamSearch) {
 
 function TeamItem({
   user,
-  prof_img_url,
   self_intro,
   user_title,
   intro_tag,
