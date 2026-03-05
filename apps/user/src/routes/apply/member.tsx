@@ -33,8 +33,6 @@ import { getUser } from 'src/services/user.service';
 import { ApplyMemberSchema } from 'src/types/apply.schema';
 import { z } from 'zod';
 
-import { usePeriod } from '@hooks/usePeriod';
-
 import { Title } from '@components/Title';
 import CautionList from '@components/apply/member/CautionList';
 import BlockModal from '@components/common/BlockModal';
