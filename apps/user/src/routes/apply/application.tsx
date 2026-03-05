@@ -13,6 +13,8 @@ import {
   APPLY_PATH_OPTIONS,
   CURRENT_SEMESTER,
   CURRENT_YEAR,
+  RECRUIT_END_DATE,
+  RECRUIT_START_DATE,
 } from '@packages/constants';
 import { getApplication, updateApplication } from '@services/apply.service';
 import { getAllStudies } from '@services/study.service';
@@ -33,6 +35,8 @@ import { z } from 'zod';
 
 import { Title } from '@components/Title';
 import CautionList from '@components/apply/application/CautionList';
+
+import { usePeriod } from '@hooks/usePeriod';
 
 export const Route = createFileRoute('/apply/application')({
   beforeLoad: async () => {
@@ -76,6 +80,7 @@ function MyApplication() {
   const { application, studies, userInfo } = loaderData;
 
   const { id, name, department, phone_number } = userInfo;
+  const { isIncluded } = usePeriod(RECRUIT_START_DATE, RECRUIT_END_DATE);
   const options: SelectOption[] = studies.map((study) => ({
     value: study.id.toString(),
     label: study.name,
@@ -239,7 +244,7 @@ function MyApplication() {
             variant='contained'
             size='large'
             fullWidth
-            disabled={!form.formState.isDirty}
+            disabled={!form.formState.isDirty || !isIncluded}
           >
             수정
           </Button>

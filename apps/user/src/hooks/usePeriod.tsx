@@ -21,11 +21,12 @@ export function usePeriod(startDate: string, endDate: string) {
 
   const isIncluded = useMemo(() => {
     const start = dayjs(startDate);
-    const end = dayjs(endDate).add(1, 'day');
+    const hasTime = endDate.includes('T');
+    const end = hasTime ? dayjs(endDate) : dayjs(endDate).add(1, 'day');
 
     return (
       (currentDate.isAfter(start) || currentDate.isSame(start, 'day')) &&
-      (currentDate.isBefore(end) || currentDate.isSame(end, 'day'))
+      currentDate.isBefore(end)
     );
   }, [currentDate, startDate, endDate]);
 
