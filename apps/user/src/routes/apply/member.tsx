@@ -95,8 +95,8 @@ function ApplyMember() {
   const { closeDialog, openSingleButtonDialog } = useDialogStore();
 
   const { id, name, department, phone_number } = userInfo!;
-  const { isIncluded } = usePeriod(RECRUIT_START_DATE, RECRUIT_END_DATE);
-  //const isIncluded = false;
+  // const { isIncluded } = usePeriod(RECRUIT_START_DATE, RECRUIT_END_DATE);
+  const isIncluded = false;
 
   const form = useForm<z.infer<typeof ApplyMemberSchema>>({
     resolver: zodResolver(ApplyMemberSchema),
