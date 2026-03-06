@@ -61,7 +61,7 @@ function SubscriptionPage() {
   const handlePaid = async (id: GridRowId) => {
     console.log('납부');
     try {
-      await changePaidStatus([id as number], 'Y');
+      await changePaidStatus([id as number], 1);
       queryClient.invalidateQueries({
         queryKey: ['unpaid-users'],
       });
@@ -81,7 +81,7 @@ function SubscriptionPage() {
 
   const handleUndo = async (id: GridRowId) => {
     try {
-      await changePaidStatus([id as number], 'N');
+      await changePaidStatus([id as number], 0);
       queryClient.invalidateQueries({
         queryKey: ['unpaid-users'],
       });
