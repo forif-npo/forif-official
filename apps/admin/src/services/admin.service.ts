@@ -26,7 +26,7 @@ export interface Application {
 export interface AllApplication extends Omit<Application, 'intro'> {
   primary_intro: string;
   secondary_intro: null;
-  payStatus: 0 | 1;
+  pay_status: 0 | 1;
   apply_date: string;
   primary_status: 0 | 1; // 0: 대기, 1: 승낙
   secondary_status: 0 | 1; // 0: 대기, 1: 승낙

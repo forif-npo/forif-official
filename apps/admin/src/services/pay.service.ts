@@ -26,6 +26,6 @@ export const getPaidUsers = async () => {
 export const changePaidStatus = async (id: number[], status: 0 | 1) => {
   await authApi.patch('/applications/payment-status', {
     applier_ids: id,
-    payStatus: status,
+    pay_status: status,
   });
 };
