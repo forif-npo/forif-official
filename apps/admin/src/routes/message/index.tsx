@@ -64,6 +64,11 @@ export const Route = createFileRoute('/message/')({
   component: MessagePage,
 });
 
+const PAY_STATUS_OPTIONS = [
+  { value: '0', label: '미납부' },
+  { value: '1', label: '납부 완료' },
+];
+
 function a11yProps(index: number) {
   return {
     id: `message-tab-${index}`,
@@ -77,6 +82,7 @@ function MessagePage() {
     ALL_MESSAGE_TEMPLATE_OPTIONS[0]!.value,
   );
   const [isPreviewDialogOpen, setIsPreviewDialogOpen] = useState(false);
+  const [payStatusFilter, setPayStatusFilter] = useState<0 | 1>(0);
   const { data: templateList } = useQuery({
     queryKey: ['alim-talk-template-list'],
     queryFn: () => getMessageTemplates(),
@@ -330,7 +336,61 @@ function MessagePage() {
     });
   };
 
-  const handleSendToEtc = () => {};
+  const handleSendToEtc = () => {
+    const { responseSchedule, templateCode, url, dateTime, location } =
+      form.getValues();
+    const filteredApplications = applications?.filter(
+      (app) => app.pay_status === payStatusFilter,
+    );
+    openDualButtonDialog({
+      dialogIconType: DialogIconType.CONFIRM,
+      title: '문자 발송',
+      message: `${payStatusFilter === 0 ? '미납부' : '납부 완료'} 부원(총 ${filteredApplications?.length ?? 0}명)에게 문자를 발송할까요?`,
+      mainButtonText: '발송',
+      mainButtonAction: async () => {
+        const phoneNumbers = filteredApplications?.map(
+          (app) => app.phone_number,
+        );
+        if (!phoneNumbers || phoneNumbers.length === 0) {
+          openSingleButtonDialog({
+            dialogIconType: DialogIconType.WARNING,
+            title: '문자 발송 실패',
+            message: '발송 대상자가 없습니다.',
+            mainButtonText: '확인',
+          });
+          return;
+        }
+        try {
+          await sendMessage({
+            receivers: phoneNumbers,
+            responseSchedule: responseSchedule,
+            dateTime: dateTime,
+            location: location,
+            url: url,
+            templateCode: templateCode,
+          });
+          closeDialog();
+          openSingleButtonDialog({
+            dialogIconType: DialogIconType.CONFIRM,
+            title: '문자 발송 완료',
+            message: `${payStatusFilter === 0 ? '미납부' : '납부 완료'} 부원에게 문자를 발송했습니다.`,
+            mainButtonText: '확인',
+          });
+        } catch (e) {
+          console.error('Failed to send message', e);
+          closeDialog();
+          openSingleButtonDialog({
+            dialogIconType: DialogIconType.WARNING,
+            title: '문자 발송 실패',
+            message: `오류가 발생했습니다. ${e}`,
+            mainButtonText: '확인',
+          });
+        }
+      },
+      subButtonText: '취소',
+      subButtonAction: closeDialog,
+    });
+  };
 
   const handleTemplateDialogOpen = () => {
     setIsTemplateDialogOpen(true);
@@ -660,6 +720,14 @@ function MessagePage() {
               />
             </Grid>
             <Grid item xs={12}>
+              <Select
+                options={PAY_STATUS_OPTIONS}
+                val={String(payStatusFilter)}
+                setVal={(v) => setPayStatusFilter(Number(v) as 0 | 1)}
+                placeholder='납부 상태 선택'
+              />
+            </Grid>
+            <Grid item xs={12}>
               <Button
                 variant='outlined'
                 color='primary'
@@ -686,6 +754,7 @@ function MessagePage() {
             templateCode={templateCode}
             applications={applications}
             isLoading={isLoading}
+            payStatusFilter={payStatusFilter}
           />
         </Box>
       </TabPanel>
@@ -765,9 +834,10 @@ interface UserListProps {
   applications: AllApplication[] | undefined;
   templateCode: string;
   isLoading: boolean;
+  payStatusFilter?: 0 | 1;
 }
 
-function UserList({ applications, isLoading, templateCode }: UserListProps) {
+function UserList({ applications, isLoading, templateCode, payStatusFilter }: UserListProps) {
   const [searchedApplications, setSearchedApplications] = useState<
     AllApplication[] | undefined
   >();
@@ -786,6 +856,11 @@ function UserList({ applications, isLoading, templateCode }: UserListProps) {
         if (templateCode === FAIL_MESSAGE_TEMPLATE_OPTIONS[0]!.value) {
           return onlyFailApplications(application);
         }
+        if (templateCode === ETC_MESSAGE_TEMPLATE_OPTIONS[0]!.value) {
+          return payStatusFilter !== undefined
+            ? application.pay_status === payStatusFilter
+            : true;
+        }
       });
 
       setSearchedApplications(
@@ -796,7 +871,7 @@ function UserList({ applications, isLoading, templateCode }: UserListProps) {
         ),
       );
     }
-  }, [searchText, applications, templateCode]);
+  }, [searchText, applications, templateCode, payStatusFilter]);
 
   if (isLoading) {
     return (
